@@ -1,0 +1,9 @@
+
+node {
+          stage('init') {
+            echo $choice1
+          }
+          stage('build') {
+             echo $choice2
+          }
+        }
