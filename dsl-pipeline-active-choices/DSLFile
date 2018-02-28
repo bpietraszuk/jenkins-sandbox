@@ -1,0 +1,39 @@
+def choice1='choice1'
+def choice2='choice2'
+
+pipelineJob('dsl-pipeline-active-choices') {
+parameters {
+     activeChoiceParam(choice1) {
+                      description('select your choice')
+                      choiceType('SINGLE_SELECT')
+       				  filterable(true)
+                      groovyScript {
+                          script("return ['A1','B1']")
+                      }
+                  }
+                  activeChoiceReactiveParam(choice2) {
+                      description('select your choice')
+                      choiceType('SINGLE_SELECT')
+                      filterable(true)
+                      groovyScript {
+                          script("if(choice1.equals(\"A1\")){return ['1a', '2b']} else {return ['3c','4d']}")
+                      }
+                      referencedParameter(choice1)
+                  }
+    }
+  definition {
+    cps {
+      sandbox()
+      script("""
+        node {
+          stage('init') {
+            echo $choice1
+          }
+          stage('build') {
+             echo $choice2
+          }
+        }
+      """.stripIndent())
+    }
+  }
+}
