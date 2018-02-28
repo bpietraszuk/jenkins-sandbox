@@ -1,8 +1,11 @@
 def choice1='choice1'
 def choice2='choice2'
 
+def func1(elem){
+    if(elem.equals(\"A1\")){return ['1a', '2b']} else {return ['3c','4d']}
+}
 pipelineJob('dsl-pipeline-active-choices') {
-parameters {
+ parameters {
      activeChoiceParam(choice1) {
                       description('select your choice')
                       choiceType('SINGLE_SELECT')
@@ -16,11 +19,11 @@ parameters {
                       choiceType('SINGLE_SELECT')
                       filterable(true)
                       groovyScript {
-                          script("if(choice1.equals(\"A1\")){return ['1a', '2b']} else {return ['3c','4d']}")
+                          script("return func1"(choice1)")
                       }
                       referencedParameter(choice1)
                   }
-    }
+  }
   definition {
     cps {
       sandbox()
