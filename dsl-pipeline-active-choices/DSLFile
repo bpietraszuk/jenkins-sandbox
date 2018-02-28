@@ -2,7 +2,7 @@ def choice1='choice1'
 def choice2='choice2'
 
 def func1(elem){
-    if(elem.equals(\"A1\")){return ['1a', '2b']} else {return ['3c','4d']}
+    if(elem.equals("A1")){return ['1a', '2b']} else {return ['3c','4d']}
 }
 pipelineJob('dsl-pipeline-active-choices') {
  parameters {
