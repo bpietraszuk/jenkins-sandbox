@@ -23,7 +23,7 @@ pipelineJob('dsl-pipeline-active-choices') {
   }
   definition {
     cps {
-      script(readFileFromWorkspace('Jenkinsfile'))
+      script(readFileFromWorkspace('dsl-pipeline-active-choices/Jenkinsfile'))
       sandbox()
     }
   }
